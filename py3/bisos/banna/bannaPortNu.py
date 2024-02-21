@@ -140,9 +140,9 @@ def examples_csu(
     if sectionTitle == 'default':
         cs.examples.menuChapter('*BISOS Registred Port Numbers*')
 
-    cmnd('bannaPortNuOf', args="csSiteRegBox.cs")
-    cmnd('bannaPortNuOf', args="csSiteRegContainer.cs")
-    cmnd('bannaPortNuOf', args="csSiteRegistrars.cs")
+    cmnd('bannaPortNuOf', args="svcSiteRegBox")
+    cmnd('bannaPortNuOf', args="svcSiteRegContainer")
+    cmnd('bannaPortNuOf', args="svcSiteRegistrars")
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
 """ #+begin_org
@@ -180,7 +180,7 @@ class bannaPortNuOf(cs.Cmnd):
 
         self.captureRunStr(""" #+begin_org
 #+begin_src sh :results output :session shared
-  bannaInfo.cs -i bannaPortNuOf csSiteRegistrars.cs
+  bannaInfo.cs -i bannaPortNuOf svcSiteRegistrars
 #+end_src
 #+RESULTS:
 :
@@ -202,11 +202,11 @@ svcName represents a protocol or combination of protocols.
             #+end_org """)
 
             portNu: str = ""
-            if svcName == 'csSiteRegBox':
+            if svcName == 'svcSiteRegBox':
                 portNu = "22222001"
-            elif svcName == 'csSiteRegContainer':
+            elif svcName == 'svcSiteRegContainer':
                 portNu = "22222002"
-            elif svcName == 'csSiteRegistrars':
+            elif svcName == 'svcSiteRegistrars':
                 # combination of
                 portNu = "22222003"
             else:
