@@ -17,7 +17,7 @@ def longDescription():
 
 
 #__version__ = get_version('unisos/icm/__init__.py')
-__version__ = '0.1'
+__version__ = '0.3'
 
 
 requires = [
@@ -43,7 +43,7 @@ data_files = [
 setuptools.setup(
     name='bisos.banna',
     version=__version__,
-    namespace_packages=['bisos'],
+    # namespace_packages=['bisos'],
     packages=setuptools.find_packages(),
     scripts=scripts,
     #data_files=data_files,
