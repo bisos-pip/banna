@@ -180,11 +180,10 @@ class bannaPortNuOf(cs.Cmnd):
 
         self.captureRunStr(""" #+begin_org
 #+begin_src sh :results output :session shared
-  bannaInfo.cs -i bannaPortNuOf svcSiteRegistrars
+  bannaInfo.cs -i bannaPortNuOf svcFacter
 #+end_src
 #+RESULTS:
-:
-: ['22222003']
+: ['22222004']
         #+end_org """)
         if self.justCaptureP(): return cmndOutcome
 
@@ -209,6 +208,9 @@ svcName represents a protocol or combination of protocols.
             elif svcName == 'svcSiteRegistrars':
                 # combination of
                 portNu = "22222003"
+            elif svcName == 'svcFacter':
+                # combination of
+                portNu = "22222004"
             else:
                 #b_io.eh.problem_usageError(f"Unknown svcName={svcName}")
                 portNu = "NOTFOUND"
