@@ -41,7 +41,6 @@ _CommentEnd_
 ####+BEGIN: bx:dblock:ploneProc:bash:leavesList :types ""
 # {{{ DBLOCK-leavesList
 leavesList="
-py2
 py3
 "
 # }}} DBLOCK-leavesList
