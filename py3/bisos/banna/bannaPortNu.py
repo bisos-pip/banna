@@ -140,9 +140,27 @@ def examples_csu(
     if sectionTitle == 'default':
         cs.examples.menuChapter('*BISOS Registred Port Numbers*')
 
+    cs.examples.menuSection('/RPyC Registrars/')
+
     cmnd('bannaPortNuOf', args="svcSiteRegBox")
     cmnd('bannaPortNuOf', args="svcSiteRegContainer")
     cmnd('bannaPortNuOf', args="svcSiteRegistrars")
+
+    cs.examples.menuSection('/RPyC Facter/')
+    cmnd('bannaPortNuOf', args="svcFacter")
+
+    cs.examples.menuSection('/Backend API Performers/')
+
+    cmnd('bannaPortNuOf', args="csPlayerPerf")
+
+    cs.examples.menuSection('/Web Frontend Ports/')
+
+    cmnd('bannaPortNuOf', args="csPlayerUi")
+    cmnd('bannaPortNuOf', args="csLineInvoker")
+
+    cmnd('bannaPortNuOf', args="soncliPlayerUi")
+    cmnd('bannaPortNuOf', args="soncliLineInvoker")
+
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
 """ #+begin_org
@@ -201,16 +219,29 @@ svcName represents a protocol or combination of protocols.
             #+end_org """)
 
             portNu: str = ""
+            # RPyC Ports
             if svcName == 'svcSiteRegBox':
                 portNu = "22222001"
             elif svcName == 'svcSiteRegContainer':
                 portNu = "22222002"
             elif svcName == 'svcSiteRegistrars':
-                # combination of
                 portNu = "22222003"
             elif svcName == 'svcFacter':
-                # combination of
                 portNu = "22222004"
+            # Backend API Performers
+            elif svcName == 'csPlayerPerf':
+                portNu = "22223001"
+            # Frontend WebUI
+            elif svcName == 'csPlayerUi':
+                portNu = "22224001"
+            elif svcName == 'csLineInvoker':
+                portNu = "22224002"
+            elif svcName == 'soncliPlayerUi':
+                portNu = "22224003"
+            elif svcName == 'soncliLineInvoker':
+                portNu = "22224004"
+
+            #
             else:
                 #b_io.eh.problem_usageError(f"Unknown svcName={svcName}")
                 portNu = "NOTFOUND"
@@ -228,6 +259,9 @@ svcName represents a protocol or combination of protocols.
 
         print(f"stdin instead of methodInvokeArg = {methodInvokeArg}")
         #+end_org """)
+
+        if len(result) == 1:
+            result = result[0]
 
         return cmndOutcome.set(opResults=result,)
 

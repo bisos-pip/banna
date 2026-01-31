@@ -9,22 +9,22 @@ bisos.banna: BANNA (BISOS Assigned Names and Numbers Authority)
 Overview
 ========
 
-bisos.capability is a python package for BISOS Capabilities Bundles –
-Abstraction, Specification and Materialization.
+bisos.banna is a python package for BISOS Assigned Names and Numbers
+Authority
 
 Package Documentation At Github
 ===============================
 
 The information below is a subset of the full of documentation for this
 bisos-pip package. More complete documentation is available at:
-https://github.com/bisos-pip/capability-cs
+https://github.com/bisos-pip/banna-cs
 
 Realted Resources
 =================
 
 +--------------------------+------------------------------------------+
-| bisos Capabilities Panel | file:/panels/capab                       |
-|                          | ilities/_nodeBase_/fullUsagePanel-en.org |
+| bisos Capabilities Panel | file:./panels/biso                       |
+|                          | s.banna/_nodeBase_/fullUsagePanel-en.org |
 +--------------------------+------------------------------------------+
 |                          |                                          |
 +--------------------------+------------------------------------------+
@@ -45,49 +45,49 @@ Table of Contents TOC
 
 -  `Part of BISOS and ByStar — ByStar Internet Services Operating
    System <#part-of-bisos-and-bystar-----bystar-internet-services-operating-system>`__
--  `bisos.capability as a Standalone Piece of
-   BISOS <#bisoscapability-as-a-standalone-piece-of-bisos>`__
+-  `bisos.banna as a Standalone Piece of
+   BISOS <#bisosbanna-as-a-standalone-piece-of-bisos>`__
 -  `Documentation and Blee-Panels <#documentation-and-blee-panels>`__
 
-   -  `bisos.capability Blee-Panels <#bisoscapability-blee-panels>`__
+   -  `bisos.banna Blee-Panels <#bisosbanna-blee-panels>`__
 
 -  `Support <#support>`__
 
 Installation
 ============
 
-The sources for the bisos.capability pip package is maintained at:
-https://github.com/bisos-pip/capability.
+The sources for the bisos.banna pip package is maintained at:
+https://github.com/bisos-pip/banna.
 
-The bisos.capability pip package is available at PYPI as
-https://pypi.org/project/bisos.capability
+The bisos.banna pip package is available at PYPI as
+https://pypi.org/project/bisos.banna
 
-You can install bisos.capability with pip or pipx.
+You can install bisos.banna with pip or pipx.
 
 Installation With pip
 ---------------------
 
-If you need access to bisos.capability as a python module, you can
-install it with pip:
+If you need access to bisos.banna as a python module, you can install it
+with pip:
 
 .. code:: bash
 
-   pip install bisos.capability
+   pip install bisos.banna
 
 Installation With pipx
 ----------------------
 
-If you only need access to bisos.capability as a command on
-command-line, you can install it with pipx:
+If you only need access to bisos.banna as a command on command-line, you
+can install it with pipx:
 
 .. code:: bash
 
-   pipx install bisos.capability
+   pipx install bisos.banna
 
 The following commands are made available:
 
--  seedCapability.cs
--  exmpl-capability.cs
+-  seedBanna.cs
+-  exmpl-banna.cs
 
 Part of BISOS and ByStar — ByStar Internet Services Operating System
 ====================================================================
@@ -103,30 +103,29 @@ Part of BISOS and ByStar — ByStar Internet Services Operating System
   privacy in a book titled: `Nature of
   Polyexistentials <https://github.com/bxplpc/120033>`__
 
-*bisos.capability* is part of BISOS.
+*bisos.banna* is part of BISOS.
 
-bisos.capability as a Standalone Piece of BISOS
-===============================================
+bisos.banna as a Standalone Piece of BISOS
+==========================================
 
-bisos.capability is a standalone piece of BISOS. It can be used as a
+bisos.banna is a standalone piece of BISOS. It can be used as a
 self-contained Python package separate from BISOS. Follow the
 installation and usage instructions below for your own use.
 
 Documentation and Blee-Panels
 =============================
 
-bisos.capability is part of ByStar Digital Ecosystem
-http://www.by-star.net.
+bisos.banna is part of ByStar Digital Ecosystem http://www.by-star.net.
 
 This module's primary documentation is in the form of Blee-Panels.
 Additional information is also available in:
 http://www.by-star.net/PLPC/180047
 
-bisos.capability Blee-Panels
-----------------------------
+bisos.banna Blee-Panels
+-----------------------
 
-bisos.capability Blee-Panels are in ./panels directory. From within Blee
-and BISOS these panels are accessible under the Blee "Panels" menu.
+bisos.banna Blee-Panels are in ./panels directory. From within Blee and
+BISOS these panels are accessible under the Blee "Panels" menu.
 
 Support
 =======
