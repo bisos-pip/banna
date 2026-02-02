@@ -228,18 +228,38 @@ svcName represents a protocol or combination of protocols.
                 portNu = "22222003"
             elif svcName == 'svcFacter':
                 portNu = "22222004"
+
             # Backend API Performers
             elif svcName == 'csPlayerPerf':
-                portNu = "22223001"
+                portNu = "23001"
+
+            # Backend API Performers
+            elif svcName == 'csPlayerPerf_dev':
+                portNu = "23501"
+
             # Frontend WebUI
             elif svcName == 'csPlayerUi':
-                portNu = "22224001"
+                portNu = "24001"
             elif svcName == 'csLineInvoker':
-                portNu = "22224002"
+                portNu = "24002"
             elif svcName == 'soncliPlayerUi':
-                portNu = "22224003"
+                portNu = "24003"
             elif svcName == 'soncliLineInvoker':
-                portNu = "22224004"
+                portNu = "24004"
+            elif svcName == 'starterSidebar':
+                portNu = "24005"
+
+            # Frontend WebUI -- Dvelopment
+            elif svcName == 'csPlayerUi_dev':
+                portNu = "25001"
+            elif svcName == 'csLineInvoker_dev':
+                portNu = "25002"
+            elif svcName == 'soncliPlayerUi_dev':
+                portNu = "25003"
+            elif svcName == 'soncliLineInvoker_dev':
+                portNu = "25004"
+            elif svcName == 'starterSidebar_dev':
+                portNu = "25005"
 
             #
             else:
