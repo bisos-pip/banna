@@ -138,7 +138,7 @@ def examples_csu(
     cmnd = cs.examples.cmndEnter
 
     if sectionTitle == 'default':
-        cs.examples.menuChapter('*BISOS Registred Port Numbers*')
+        cs.examples.menuChapter('*OBSOLETED -- Now In UnixSockets -- BISOS Registred Port Numbers*')
 
     cs.examples.menuSection('/RPyC Registrars/')
 
@@ -148,19 +148,6 @@ def examples_csu(
 
     cs.examples.menuSection('/RPyC Facter/')
     cmnd('bannaPortNuOf', args="svcFacter")
-
-    cs.examples.menuSection('/Backend API Performers/')
-
-    cmnd('bannaPortNuOf', args="csPlayerPerf")
-
-    cs.examples.menuSection('/Web Frontend Ports/')
-
-    cmnd('bannaPortNuOf', args="csPlayerUi")
-    cmnd('bannaPortNuOf', args="csLineInvoker")
-
-    cmnd('bannaPortNuOf', args="soncliPlayerUi")
-    cmnd('bannaPortNuOf', args="soncliLineInvoker")
-
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
 """ #+begin_org
@@ -228,39 +215,6 @@ svcName represents a protocol or combination of protocols.
                 portNu = "22222003"
             elif svcName == 'svcFacter':
                 portNu = "22222004"
-
-            # Backend API Performers
-            elif svcName == 'csPlayerPerf':
-                portNu = "23001"
-
-            # Backend API Performers
-            elif svcName == 'csPlayerPerf_dev':
-                portNu = "23501"
-
-            # Frontend WebUI
-            elif svcName == 'csPlayerUi':
-                portNu = "24001"
-            elif svcName == 'csLineInvoker':
-                portNu = "24002"
-            elif svcName == 'soncliPlayerUi':
-                portNu = "24003"
-            elif svcName == 'soncliLineInvoker':
-                portNu = "24004"
-            elif svcName == 'starterSidebar':
-                portNu = "24005"
-
-            # Frontend WebUI -- Dvelopment
-            elif svcName == 'csPlayerUi_dev':
-                portNu = "25001"
-            elif svcName == 'csLineInvoker_dev':
-                portNu = "25002"
-            elif svcName == 'soncliPlayerUi_dev':
-                portNu = "25003"
-            elif svcName == 'soncliLineInvoker_dev':
-                portNu = "25004"
-            elif svcName == 'starterSidebar_dev':
-                portNu = "25005"
-
             #
             else:
                 #b_io.eh.problem_usageError(f"Unknown svcName={svcName}")

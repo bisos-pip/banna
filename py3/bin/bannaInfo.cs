@@ -1,8 +1,22 @@
 #!/bin/env python
 # -*- coding: utf-8 -*-
 
+import typing ; csInfo: typing.Dict[str, typing.Any] = {'category': 'csxu', 'name': 'cmnds-seed.cs', 'features': ['direct', 'seeded']}
+
+csInfo['summary'] = """ #+begin_org
+* ~[Summary]~ :: A =CmndSvc= (Pkged,) A most basic csxu, to be augmented when planted
+#+end_org """
+
+csInfo['description'] = """ #+begin_org
+* [[elisp:(org-cycle)][| ~csInfoDescription~ |]] :: This csxu-seed does not dot contain any special cmnds. It is a most basic seed.
+#+end_org """
+
 """ #+begin_org
-* ~[Summary]~ :: A =CmndSvc= for running CS examples individually or collectively.
+* [[elisp:(org-cycle)][| ~DevDescription~ |]] :: [[file:/bisos/panels/bisos-core/bisos-pip/bisos.tocsModules/_nodeBase_/fullUsagePanel-en.org][BISOS Panel]]   [[elisp:(org-cycle)][| ]]
+
+** Status: In use with BISOS
+** /[[elisp:(org-cycle)][| Planned Improvements |]]/ :
+*** TODO Review Panel's Design and Evolution section.
 #+end_org """
 
 ####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-mu"
@@ -38,27 +52,13 @@
 """ #+begin_org
 * *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
 #+end_org """
-import typing
-csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['bannaInfo'], }
-csInfo['version'] = '202402081409'
+if 'csInfo' not in globals(): import typing ; csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['loadAs'], }
+csInfo['version'] = '202602060203'
 csInfo['status']  = 'inUse'
 csInfo['panel'] = 'bannaInfo-Panel.org'
 csInfo['groupingType'] = 'IcmGroupingType-pkged'
 csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
 ####+END:
-
-""" #+begin_org
-* [[elisp:(org-cycle)][| ~Description~ |]] :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/PyFwrk/bisos-pip/bisos.cs/_nodeBase_/fullUsagePanel-en.org][BISOS CmndSvcs Panel]]   [[elisp:(org-cycle)][| ]]
-
-This a =CmndSvc= for running CS examples individually or collectively.
-It can also be used as a regression tester.
-It works closely with the bisos.examples package.
-
-** Status: In use with BISOS
-** /[[elisp:(org-cycle)][| Planned Improvements |]]/ :
-*** TODO pyRoInv examples module should be merged with pyInv and cmnds module.
-*** TODO Create an examples panel to which this points.
-#+end_org """
 
 ####+BEGIN: b:prog:file/orgTopControls :outLevel 1
 """ #+begin_org
@@ -97,30 +97,25 @@ import collections
 #+BEGIN_SRC emacs-lisp
 (setq  b:py:cs:csuList
   (list
-   "bisos.b.cs.ro"
-   "bisos.csPlayer.bleep"
-   "bisos.b.fpCls"
-   "bisos.b.clsMethod_csu"
+   "bisos.csPlayer.csxuFps_csu"
    "bisos.banna.bannaPortNu"
+   "bisos.banna.banna_csu"
  ))
 #+END_SRC
 #+RESULTS:
-| bisos.b.cs.ro | bisos.csPlayer.bleep | bisos.b.fpCls | bisos.b.clsMethod_csu | bisos.banna.bannaPortNu |
+| bisos.csPlayer.csxuFps_csu | bisos.banna.bannaPortNu | bisos.banna.banna_csu |
 #+end_org """
 
 ####+BEGIN: b:py3:cs:framework/csuListProc :pyImports t :csuImports t :csuParams t
 """ #+begin_org
-*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] =Process CSU List= with /5/ in csuList pyImports=t csuImports=t csuParams=t
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CsFrmWrk   [[elisp:(outline-show-subtree+toggle)][||]] ~Process CSU List~ with /3/ in csuList pyImports=t csuImports=t csuParams=t
 #+end_org """
 
-from bisos.b.cs import ro
-from bisos.csPlayer import bleep
-from bisos.b import fpCls
-from bisos.b import clsMethod_csu
+from bisos.csPlayer import csxuFps_csu
 from bisos.banna import bannaPortNu
+from bisos.banna import banna_csu
 
-
-csuList = [ 'bisos.b.cs.ro', 'bisos.csPlayer.bleep', 'bisos.b.fpCls', 'bisos.b.clsMethod_csu', 'bisos.banna.bannaPortNu', ]
+csuList = [ 'bisos.csPlayer.csxuFps_csu', 'bisos.banna.bannaPortNu', 'bisos.banna.banna_csu', ]
 
 g_importedCmndsModules = cs.csuList_importedModules(csuList)
 
@@ -165,7 +160,12 @@ class examples(cs.Cmnd):
             return failed(cmndOutcome)
 ####+END:
 
+        cs.examples.myName(cs.G.icmMyName(), cs.G.icmMyFullName())
+        cs.examples.commonBrief()
+        csxuFps_csu.playerMenuExamples().pyCmnd()
+
         bannaPortNu.examples_csu(sectionTitle="default")
+        banna_csu.examples_csu(sectionTitle="default")
 
         # b.ignore(ro.__doc__, fpCls.__doc__, clsMethod_csu.__doc__)  # We are not using these modules, but they are auto imported.
 

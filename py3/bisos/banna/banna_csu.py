@@ -1,0 +1,482 @@
+# -*- coding: utf-8 -*-
+
+""" #+begin_org
+* ~[Summary]~ :: =CS-Lib= PortNu Registrar of BANNA (Bisos Assigned Names and Numbers Authority)
+#+end_org """
+
+####+BEGIN: b:py3:cs:file/dblockControls :classification "cs-u"
+""" #+begin_org
+* [[elisp:(org-cycle)][| /Control Parameters Of This File/ |]] :: dblk ctrls classifications=cs-u
+#+BEGIN_SRC emacs-lisp
+(setq-local b:dblockControls t) ; (setq-local b:dblockControls nil)
+(put 'b:dblockControls 'py3:cs:Classification "cs-u") ; one of cs-mu, cs-u, cs-lib, bpf-lib, pyLibPure
+#+END_SRC
+#+RESULTS:
+: cs-u
+#+end_org """
+####+END:
+
+####+BEGIN: b:prog:file/proclamations :outLevel 1
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Proclamations |]]* :: Libre-Halaal Software --- Part Of BISOS ---  Poly-COMEEGA Format.
+** This is Libre-Halaal Software. © Neda Communications, Inc. Subject to AGPL.
+** It is part of BISOS (ByStar Internet Services OS)
+** Best read and edited  with Blee in Poly-COMEEGA (Polymode Colaborative Org-Mode Enhance Emacs Generalized Authorship)
+#+end_org """
+####+END:
+
+####+BEGIN: b:prog:file/particulars :authors ("./inserts/authors-mb.org")
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Particulars |]]* :: Authors, version
+** This File: /bisos/git/bxRepos/bisos-pip/siteRegistrars/py3/bisos/siteRegistrars/csSiteRegBox.py
+** Authors: Mohsen BANAN, http://mohsen.banan.1.byname.net/contact
+#+end_org """
+####+END:
+
+####+BEGINNOT: b:py3:file/particulars-csInfo :status "inUse"
+""" #+begin_org
+* *[[elisp:(org-cycle)][| Particulars-csInfo |]]*
+#+end_org """
+import typing
+csInfo: typing.Dict[str, typing.Any] = { 'moduleName': ['csSiteRegBox'], }
+csInfo['version'] = '202401192758'
+csInfo['status']  = 'inUse'
+csInfo['panel'] = "[[../../panels/_nodeBase_/fullUsagePanel-en.org]]"
+csInfo['groupingType'] = 'IcmGroupingType-pkged'
+csInfo['cmndParts'] = 'IcmCmndParts[common] IcmCmndParts[param]'
+####+END:
+
+""" #+begin_org
+* [[elisp:(org-cycle)][| ~Description~ |]] :: [[file:/bisos/git/auth/bxRepos/blee-binders/bisos-core/PyFwrk/bisos-pip/bisos.cs/_nodeBase_/fullUsagePanel-en.org][BISOS CmndSvcs Panel]]   [[elisp:(org-cycle)][| ]]
+** TODO Document this module.
+** TODO Add sectioning for Invoker and performer.
+** Relevant Panels:
+** Status: In use with BISOS
+** /[[elisp:(org-cycle)][| Planned Improvements |]]/ :
+*** TODO complete fileName in particulars.
+#+end_org """
+
+####+BEGIN: b:prog:file/orgTopControls :outLevel 1
+""" #+begin_org
+* [[elisp:(org-cycle)][| Controls |]] :: [[elisp:(delete-other-windows)][(1)]] | [[elisp:(show-all)][Show-All]]  [[elisp:(org-shifttab)][Overview]]  [[elisp:(progn (org-shifttab) (org-content))][Content]] | [[file:Panel.org][Panel]] | [[elisp:(blee:ppmm:org-mode-toggle)][Nat]] | [[elisp:(bx:org:run-me)][Run]] | [[elisp:(bx:org:run-me-eml)][RunEml]] | [[elisp:(progn (save-buffer) (kill-buffer))][S&Q]]  [[elisp:(save-buffer)][Save]]  [[elisp:(kill-buffer)][Quit]] [[elisp:(org-cycle)][| ]]
+** /Version Control/ ::  [[elisp:(call-interactively (quote cvs-update))][cvs-update]]  [[elisp:(vc-update)][vc-update]] | [[elisp:(bx:org:agenda:this-file-otherWin)][Agenda-List]]  [[elisp:(bx:org:todo:this-file-otherWin)][ToDo-List]]
+
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:file/workbench :outLevel 1
+""" #+begin_org
+* [[elisp:(org-cycle)][| Workbench |]] :: [[elisp:(python-check (format "/bisos/venv/py3/bisos3/bin/python -m pyclbr %s" (bx:buf-fname))))][pyclbr]] || [[elisp:(python-check (format "/bisos/venv/py3/bisos3/bin/python -m pydoc ./%s" (bx:buf-fname))))][pydoc]] || [[elisp:(python-check (format "/bisos/pipx/bin/pyflakes %s" (bx:buf-fname)))][pyflakes]] | [[elisp:(python-check (format "/bisos/pipx/bin/pychecker %s" (bx:buf-fname))))][pychecker (executes)]] | [[elisp:(python-check (format "/bisos/pipx/bin/pycodestyle %s" (bx:buf-fname))))][pycodestyle]] | [[elisp:(python-check (format "/bisos/pipx/bin/flake8 %s" (bx:buf-fname))))][flake8]] | [[elisp:(python-check (format "/bisos/pipx/bin/pylint %s" (bx:buf-fname))))][pylint]]  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:cs:orgItem/basic :type "=PyImports= " :title "*Py Library IMPORTS*" :comment "-- with classification based framework/imports"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  =PyImports=  [[elisp:(outline-show-subtree+toggle)][||]] *Py Library IMPORTS* -- with classification based framework/imports  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:cs:framework/imports :basedOn "classification"
+""" #+begin_org
+** Imports Based On Classification=cs-u
+#+end_org """
+from bisos import b
+from bisos.b import cs
+from bisos.b import b_io
+from bisos.common import csParam
+
+import collections
+####+END:
+
+from bisos.banna import tcpPorts
+from bisos.banna import unixSockets
+
+####+BEGIN: b:py3:cs:func/typing :funcName "commonParamsSpecify" :comment "~CSU Specification~" :funcType "ParSpc" :deco ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-ParSpc [[elisp:(outline-show-subtree+toggle)][||]] /commonParamsSpecify/  ~CSU Specification~  [[elisp:(org-cycle)][| ]]
+#+end_org """
+def commonParamsSpecify(
+####+END:
+        csParams: cs.param.CmndParamDict,
+) -> None:
+    pass
+
+####+BEGIN: b:py3:cs:orgItem/section :title "CSU-Lib Examples" :comment "-- Providing examples_csu"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  /Section/    [[elisp:(outline-show-subtree+toggle)][||]] *CSU-Lib Examples* -- Providing examples_csu  [[elisp:(org-cycle)][| ]]
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:cs:func/typing :funcName "examples_csu" :comment "~CSU Specification~" :funcType "eType" :retType "" :deco "default" :argsList ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  F-T-eType  [[elisp:(outline-show-subtree+toggle)][||]] /examples_csu/  ~CSU Specification~ deco=default  [[elisp:(org-cycle)][| ]]
+#+end_org """
+@cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+def examples_csu(
+####+END:
+        sectionTitle: typing.AnyStr = '',
+) -> None:
+    """ #+begin_org
+** [[elisp:(org-cycle)][| *DocStr* |]] Examples of Service Access Instance Commands.
+    #+end_org """
+
+    # od = collections.OrderedDict
+    cmnd = cs.examples.cmndEnter
+
+    if sectionTitle == 'default':
+        cs.examples.menuChapter('*BISOS Registered TCP and Unix Port Numbers*')
+
+    cs.examples.menuSection('/TCP Ports Registrars/')
+
+    cmnd('bannaTcpPortsList', comment="# A dictionary of all ports data in raw format")
+    cmnd('bannaTcpPortsList', comment="| pyLiteralToBash.cs -i stdinToBlack  # Formatted")
+    cmnd('bannaTcpPortsNames', comment="# List of portNames")
+    cmnd('bannaTcpPortNuOf', args='csPlayerPerf',  comment="# Convert portName to portNu")
+
+    cs.examples.menuSection('/RPyC UnixSockets Registrars/')
+
+    cmnd('bannaUnixSocketsList', comment="# A dictionary of all sockets data in raw format")
+    cmnd('bannaUnixSocketsList', comment="| pyLiteralToBash.cs -i stdinToBlack  # Formatted")
+    cmnd('bannaUnixSocketNuOf', args='svcSiteRegBox',  comment="# Convert socketName to socketNu")
+
+
+####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*     [[elisp:(outline-show-subtree+toggle)][| _Invoker Only CmndSvc_: |]]  Command Services Section  [[elisp:(org-shifttab)][<)]] E|
+#+end_org """
+####+END:
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaTcpPortNuOf" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 1 :argsMax 9999 :pyInv "methodInvokeArg"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaTcpPortNuOf>>  =verify= argsMin=1 argsMax=9999 ro=noCli pyInv=methodInvokeArg   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaTcpPortNuOf(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 1, 'Max': 9999,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+             methodInvokeArg: typing.Any=None,   # pyInv Argument
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return failed(cmndOutcome)
+        cmndArgsSpecDict = self.cmndArgsSpec()
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  bannaInfo.cs -i bannaPortNuOf svcFacter
+#+end_src
+#+RESULTS:
+: ['22222004']
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result: list[str] = []
+        actionArgs = self.cmndArgsGet("0&9999", cmndArgsSpecDict, argsList)
+
+        def mapPortNameToPortNu(
+                portName: str,
+        ) -> str:
+            """ #+begin_org
+*****  [[elisp:(org-cycle)][| *Note:* | ]] Use portName and obtain portNu from tcpPorts.tcpPortsAssignedList
+            #+end_org """
+            portInfo = tcpPorts.tcpPortsAssignedList.tcpPortsList.get(portName)
+            if portInfo is None:
+                raise ValueError(f"Unknown port name: {portName}")
+            return str(portInfo.portNu)
+
+        for each in actionArgs:
+            portNu = mapPortNameToPortNu(each)
+            result.append(portNu)
+
+        # if there is just one, don't return a list
+        if len(result) == 1:
+            result = result[0]
+
+        return cmndOutcome.set(opResults=result,)
+
+
+####+BEGIN: b:py3:cs:method/args :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList "self"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /cmndArgsSpec/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmndArgsSpec(self, ):
+####+END:
+        """  #+begin_org
+*** [[elisp:(org-cycle)][| *cmndArgsSpec:* | ]] First arg defines rest
+        #+end_org """
+
+        cmndArgsSpecDict = cs.arg.CmndArgsSpecDict()
+        cmndArgsSpecDict.argsDictAdd(
+            argPosition="0&9999",
+            argName="actionArgs",
+            argChoices=[],
+            argDescription="Rest of args for use by action"
+        )
+
+        return cmndArgsSpecDict
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaTcpPortsList" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaTcpPortsList>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaTcpPortsList(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  bannaInfo.cs -i bannaPortNuOf svcFacter
+#+end_src
+#+RESULTS:
+: ['22222004']
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result = tcpPorts.tcpPortsAssignedList.tcpPortsList
+
+        return cmndOutcome.set(opResults=result,)
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaTcpPortsNames" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaTcpPortsNames>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaTcpPortsNames(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  bannaInfo.cs -i bannaPortNuOf svcFacter
+#+end_src
+#+RESULTS:
+: ['22222004']
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result = list(tcpPorts.tcpPortsAssignedList.tcpPortsList.keys())
+
+        return cmndOutcome.set(opResults=result,)
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaUnixSocketNuOf" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 1 :argsMax 9999 :pyInv "methodInvokeArg"
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaUnixSocketNuOf>>  =verify= argsMin=1 argsMax=9999 ro=noCli pyInv=methodInvokeArg   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaUnixSocketNuOf(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 1, 'Max': 9999,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+             methodInvokeArg: typing.Any=None,   # pyInv Argument
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return failed(cmndOutcome)
+        cmndArgsSpecDict = self.cmndArgsSpec()
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  bannaInfo.cs -i bannaPortNuOf svcFacter
+#+end_src
+#+RESULTS:
+: ['22222004']
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result: list[str] = []
+        actionArgs = self.cmndArgsGet("0&9999", cmndArgsSpecDict, argsList)
+
+        def mapPortNameToPortNu(
+                portName: str,
+        ) -> str:
+            """ #+begin_org
+*****  [[elisp:(org-cycle)][| *Note:* | ]] Use portName and obtain portNu from unixSockets.unixSocketsAssignedList
+            #+end_org """
+            portInfo = unixSockets.unixSocketsAssignedList.unixSocketsList.get(portName)
+            if portInfo is None:
+                raise ValueError(f"Unknown port name: {portName}")
+            return str(portInfo.socketNu)
+
+        for each in actionArgs:
+            portNu = mapPortNameToPortNu(each)
+            result.append(portNu)
+
+        # if there is just one, don't return a list
+        if len(result) == 1:
+            result = result[0]
+
+        return cmndOutcome.set(opResults=result,)
+
+
+####+BEGIN: b:py3:cs:method/args :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList "self"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /cmndArgsSpec/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmndArgsSpec(self, ):
+####+END:
+        """  #+begin_org
+*** [[elisp:(org-cycle)][| *cmndArgsSpec:* | ]] First arg defines rest
+        #+end_org """
+
+        cmndArgsSpecDict = cs.arg.CmndArgsSpecDict()
+        cmndArgsSpecDict.argsDictAdd(
+            argPosition="0&9999",
+            argName="actionArgs",
+            argChoices=[],
+            argDescription="Rest of args for use by action"
+        )
+
+        return cmndArgsSpecDict
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaUnixSocketsList" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaUnixSocketsList>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaUnixSocketsList(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  bannaInfo.cs -i bannaPortNuOf svcFacter
+#+end_src
+#+RESULTS:
+: ['22222004']
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result = unixSockets.unixSocketsAssignedList.unixSocketsList
+
+        return cmndOutcome.set(opResults=result,)
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaUnixSocketsNames" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaUnixSocketsNames>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaUnixSocketsNames(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  bannaInfo.cs -i bannaPortNuOf svcFacter
+#+end_src
+#+RESULTS:
+: ['22222004']
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result = list(unixSockets.unixSocketsAssignedList.unixSocketsList.keys())
+
+        return cmndOutcome.set(opResults=result,)
+
+
+
+####+BEGIN: b:py3:cs:framework/endOfFile :basedOn "classification"
+""" #+begin_org
+* [[elisp:(org-cycle)][| *End-Of-Editable-Text* |]] :: emacs and org variables and control parameters
+#+end_org """
+
+#+STARTUP: showall
+
+### local variables:
+### no-byte-compile: t
+### end:
+####+END:
