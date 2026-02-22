@@ -158,59 +158,59 @@ starterSidebar = TcpPortNuInfo(
 tcpPortsAssignedList.tcpPortsList[starterSidebar.portName or 'starterSidebar'] = starterSidebar
 
 
-csPlayerPerfDev = TcpPortNuInfo(
+csPlayerPerf_dev = TcpPortNuInfo(
     portNu=23501,
     portName='csPlayerPerf_dev',
     portDescription="Backend API performer service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
 )
-tcpPortsAssignedList.tcpPortsList[csPlayerPerfDev.portName or 'csPlayerPerf_dev'] = csPlayerPerfDev
+tcpPortsAssignedList.tcpPortsList[csPlayerPerf_dev.portName or 'csPlayerPerf_dev'] = csPlayerPerf_dev
 
-csPlayerUiDev = TcpPortNuInfo(
+csPlayerUi_dev = TcpPortNuInfo(
     portNu=25001,
     portName='csPlayerUi_dev',
     portDescription="Reveal Gatsby site wrapping csLineInvoker and others (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
 )
-tcpPortsAssignedList.tcpPortsList[csPlayerUiDev.portName or 'csPlayerUi_dev'] = csPlayerUiDev
+tcpPortsAssignedList.tcpPortsList[csPlayerUi_dev.portName or 'csPlayerUi_dev'] = csPlayerUi_dev
 
-csLineInvokerDev = TcpPortNuInfo(
+csLineInvoker_dev = TcpPortNuInfo(
     portNu=25002,
     portName='csLineInvoker_dev',
     portDescription="Line invoker service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
 )
-tcpPortsAssignedList.tcpPortsList[csLineInvokerDev.portName or 'csLineInvoker_dev'] = csLineInvokerDev
+tcpPortsAssignedList.tcpPortsList[csLineInvoker_dev.portName or 'csLineInvoker_dev'] = csLineInvoker_dev
 
-sonCliPlayerUiDev = TcpPortNuInfo(
+sonCliPlayerUi_dev = TcpPortNuInfo(
     portNu=25003,
     portName='sonCliPlayerUi_dev',
     portDescription="SON CLI player UI service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
 )
-tcpPortsAssignedList.tcpPortsList[sonCliPlayerUiDev.portName or 'sonCliPlayerUi_dev'] = sonCliPlayerUiDev
+tcpPortsAssignedList.tcpPortsList[sonCliPlayerUi_dev.portName or 'sonCliPlayerUi_dev'] = sonCliPlayerUi_dev
 
-sonCliLineInvokerDev = TcpPortNuInfo(
+sonCliLineInvoker_dev = TcpPortNuInfo(
     portNu=25004,
     portName='sonCliLineInvoker_dev',
     portDescription="SON CLI line invoker service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
 )
-tcpPortsAssignedList.tcpPortsList[sonCliLineInvokerDev.portName or 'sonCliLineInvoker_dev'] = sonCliLineInvokerDev
+tcpPortsAssignedList.tcpPortsList[sonCliLineInvoker_dev.portName or 'sonCliLineInvoker_dev'] = sonCliLineInvoker_dev
 
-starterSidebarDev = TcpPortNuInfo(
+starterSidebar_dev = TcpPortNuInfo(
     portNu=25005,
     portName='starterSidebar_dev',
     portDescription="Starter sidebar service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
 )
-tcpPortsAssignedList.tcpPortsList[starterSidebarDev.portName or 'starterSidebar_dev'] = starterSidebarDev
+tcpPortsAssignedList.tcpPortsList[starterSidebar_dev.portName or 'starterSidebar_dev'] = starterSidebar_dev
 
 
 
