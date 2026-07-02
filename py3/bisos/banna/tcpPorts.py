@@ -157,6 +157,16 @@ starterSidebar = TcpPortNuInfo(
 )
 tcpPortsAssignedList.tcpPortsList[starterSidebar.portName or 'starterSidebar'] = starterSidebar
 
+airflow = TcpPortNuInfo(
+    portNu=24006,
+    portName='airflow',
+    portDescription="airflow (ver 3.2.2)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-06-27 Fri 16:44>",
+)
+tcpPortsAssignedList.tcpPortsList[airflow.portName or 'airflow'] = airflow
+
+
 
 csPlayerPerf_dev = TcpPortNuInfo(
     portNu=23501,
