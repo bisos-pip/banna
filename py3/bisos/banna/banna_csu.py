@@ -139,6 +139,10 @@ def examples_csu(
     cmnd('bannaUnixSocketsList', comment="| pyLiteralToBash.cs -i stdinToBlack  # Formatted")
     cmnd('bannaUnixSocketNuOf', args='svcSiteRegBox',  comment="# Convert socketName to socketNu")
 
+    cs.examples.menuSection('/For etcHosts/')
+
+    cmnd('bannaForEtcHosts', comment="# A list of 127.0.22.xx  for each of the port names")
+
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
 """ #+begin_org
@@ -228,6 +232,45 @@ class bannaTcpPortNuOf(cs.Cmnd):
         )
 
         return cmndArgsSpecDict
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaForEtcHosts" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaForEtcHosts>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaForEtcHosts(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+        #+end_org """): return(cmndOutcome)
+
+        self.captureRunStr(""" #+begin_org
+#+begin_src sh :results output :session shared
+  bannaInfo.cs -i bannaForEtcHosts
+#+end_src
+#+RESULTS:
+: ['22222004']
+        #+end_org """)
+        if self.justCaptureP(): return cmndOutcome
+
+        result = "NOTYET"
+
+        return cmndOutcome.set(opResults=result,)
+
 
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaTcpPortsList" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""

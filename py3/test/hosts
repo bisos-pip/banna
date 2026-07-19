@@ -1,0 +1,26 @@
+127.0.0.1	localhost
+127.0.1.1       HSS-9999.intra HSS-9999
+
+# The following lines are desirable for IPv6 capable hosts
+::1     localhost ip6-localhost ip6-loopback
+ff02::1 ip6-allnodes
+ff02::2 ip6-allrouters
+
+
+####+BEGIN: bx:dblock:global:run-result-stdout :command "echo \\# ignore command will come from banna"
+
+####+END:
+
+
+####+BEGINNOT: bx:dblock:global:run-result-stdout :command "echo \\# ignore command will come from banna"
+# ignore command will come from banna
+127.0.22.100  csPlayerPerf.here
+127.0.22.101  csLineInvoker.here
+127.0.22.102  csPlayerUi.here
+
+127.0.22.103  sonCliPlayerUi.here
+127.0.22.104  sonCliLineInvoker.here
+
+127.0.22.105  starterSidebar.here
+
+####+END:
