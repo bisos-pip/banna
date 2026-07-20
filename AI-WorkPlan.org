@@ -1,0 +1,97 @@
+#+title: Work Plan
+#+DATE: <2026-06-10 Wed 13:54>
+#+AUTHOR: Mohsen BANAN
+#+OPTIONS: toc:4
+#+TAGS: me ai aiAndMe
+
+# Provenance (installed once by startAiActivity.cs --- not regenerated):
+#   Date:      2026-07-19T17:12:22-07:00
+#   User:      bystar
+#   Templates: /bisos/apps/defaults/ai-templates
+#   Command:   /bisos/venv/py3/devbin/startAiActivity.cs -i initiate --root=repo --activity=bisos-pip
+
+####+BEGIN: b:ai:file/particulars
+* AI Working Context
+  Working Directory: /bisos/git/auth/bxRepos/bisos-pip/banna
+  File: /bisos/git/auth/bxRepos/bisos-pip/banna/AI-WorkPlan.org
+  Activity: bisos-pip
+  Companion Docs: AI-WORKFLOW.org, AI-Activity.org, AI-DevStatus.org, README.org
+###+END:
+
+This Work Plan file drives the AI collaborative development.
+Interactions are broken down into "Stages". Each Stage has a set
+of TODOs that I work with Claude to accomplish.
+
+Note to a fresh Claude: read this file together with AI-WORKFLOW.org,
+AI-Activity.org and AI-DevStatus.org to orient yourself. The =<<Context Confirmation>>=
+TODO below is the standard first step, or use =/bx-confirm0= as the automated equivalent.
+TODOs tagged =:ai:= are assigned to Claude. After completing a TODO, summarize results
+under =----- AI Results: ------= and mark it DONE.
+
+* Stage 1: Confirm AI's Understanding of This Repo's Context
+
+Goal: Confirm AI's understanding of the context and capture that in [[Context Confirmation]] TODO.
+
+
+* Stage 1 TODOs
+** +
+** DONE [#A] <<Context Confirmation>> for AI (typically triggered by /bx-confirm0) :ai:
+CLOSED: [2026-07-19 Sat]
+SCHEDULED: <2026-06-09 Tue>
+Based on the series of files starting from CLAUDE.md in this repo,
+describe succinctly what you have understood.
+Enumerate explicitly which files you have imported and which you have considered.
+----- AI Results: ------
+Imported: CLAUDE.md (safe-copy) → AI-WORKFLOW.org (symlink→mother/) →
+AI-Activity.org (symlink→bisos-pip/) → AI-DevStatus.org (sparse) →
+AI-WorkPlan.org → README.org.
+
+bisos.banna is the BISOS Assigned Names and Numbers Authority pip package — maps
+service names to TCP ports, Unix socket numbers, etc. Key file: banna_csu.py which
+contains bannaForEtcHosts (currently a NOTYET stub) — the command needed by capDns
+to update /etc/hosts entries. Package is NOT locally pip-installed; changes must be
+made in both the repo and the site-packages copy.
+** -
+
+* Stage 2: Implement bannaForEtcHosts
+
+Goal: bannaForEtcHosts should generate the contents of ./py3/test/hosts dynamic block
+
+
+* Stage 2 TODOs
+** +
+** DONE [#A] bannaForEtcHosts should generate content of dblock of ./py3/test/hosts :ai:
+CLOSED: [2026-07-19 Sat]
+SCHEDULED: <2026-06-09 Tue>
+For each tcp port, create an /etc/hosts entry. Starting with 127.0.22.100. Increment for each entry.
+----- AI Results: ------
+Implemented bannaForEtcHosts in banna_csu.py (repo + site-packages). Iterates sorted
+tcpPortsAssignedList, assigns IPs from 127.0.22.100 upward, prints "IP  name.here" per entry.
+Output starts with airflow.here at 127.0.22.100. No opResults — stdout only.
+** DONE [#A] Next we will add bx:dblock:global:run-result-stdout to bisos.pyDblock :ai:
+CLOSED: [2026-07-19 Sat]
+SCHEDULED: <2026-06-09 Tue>
+Work will continue in /bxRepos/bisos-pip/pyDblock
+----- AI Results: ------
+Added =dblock_runResult.py= to =bisos.pyDblock= (editable install, takes effect immediately).
+Handler registered under signature =bx:dblock:global:run-result-stdout=. Reads =:command=
+arg, runs it via =subprocess.run(shell=True)= in the file's parent dir, replaces dblock
+body with captured stdout. Also imported in =py-dblock.cs= so it auto-registers on load.
+Verified: =py-dblock.cs -i updateDblocks banna/py3/test/hosts= expands the dblock correctly.
+** DONE [#A] After implemetation of bx:dblock:global:run-result-stdout we will add a updateEtcHosts  Cmnd here that will run it on a given file  :ai:
+CLOSED: [2026-07-19 Sat]
+SCHEDULED: <2026-06-09 Tue>
+Write the updateEtcHosts Cmnd.  This feature of banna will then be used by bisos.capDns.
+----- AI Results: ------
+Added =updateEtcHosts= class to =banna_csu.py= (repo + site-packages). Takes one file
+path arg, invokes =py-dblock.cs -i updateDblocks <filePath>= via subprocess. Also added
+an example entry in =examples_csu=. Verified: =bannaInfo.cs -i updateEtcHosts
+banna/py3/test/hosts= runs cleanly and expands the dblock in place.
+
+** -
+
+
+# Local Variables:
+# eval: (setq-local toc-org-max-depth 4)
+# eval: (setq-local org-log-done 'time)
+# End:
