@@ -142,6 +142,7 @@ def examples_csu(
     cs.examples.menuSection('/For etcHosts/')
 
     cmnd('bannaForEtcHosts', comment="# A list of 127.0.22.xx  for each of the port names")
+    cmnd('updateEtcHosts', args='/etc/hosts', comment="# Update bx:dblock:global:run-result-stdout blocks in /etc/hosts")
 
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
@@ -267,10 +268,84 @@ class bannaForEtcHosts(cs.Cmnd):
         #+end_org """)
         if self.justCaptureP(): return cmndOutcome
 
-        result = "NOTYET"
+        from bisos.banna import tcpPorts
+        baseIp = (127, 0, 22, 100)
+        lines = []
+        for idx, (name, info) in enumerate(sorted(tcpPorts.tcpPortsAssignedList.tcpPortsList.items())):
+            ip = f"{baseIp[0]}.{baseIp[1]}.{baseIp[2]}.{baseIp[3] + idx}"
+            line = f"{ip}  {name}.here"
+            print(line)
+            lines.append(line)
 
-        return cmndOutcome.set(opResults=result,)
+        return cmndOutcome.set(opError=b.OpError.Success,)
 
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "updateEtcHosts" :comment "" :extent "verify" :ro "cli" :parsMand "" :parsOpt "" :argsMin 1 :argsMax 1 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<updateEtcHosts>>  =verify= argsMin=1 argsMax=1 ro=cli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class updateEtcHosts(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 1, 'Max': 1,}
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+             argsList: typing.Optional[list[str]]=None,  # CsArgs
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, argsList).isProblematic():
+            return failed(cmndOutcome)
+        cmndArgsSpecDict = self.cmndArgsSpec()
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Run py-dblock updateDblocks on the given file, expanding bx:dblock:global:run-result-stdout blocks.
+        #+end_org """): return(cmndOutcome)
+
+        if self.justCaptureP(): return cmndOutcome
+
+        import subprocess
+        import pathlib
+
+        actionArgs = self.cmndArgsGet("0", cmndArgsSpecDict, argsList)
+        filePath = pathlib.Path(actionArgs)
+
+        if not filePath.is_file():
+            b_io.ann.note(f"ERROR: not a file: {filePath}")
+            return failed(cmndOutcome)
+
+        result = subprocess.run(
+            ['py-dblock.cs', '-i', 'updateDblocks', str(filePath)],
+            capture_output=True,
+            text=True,
+        )
+        if result.returncode != 0:
+            b_io.ann.note(f"ERROR: py-dblock.cs failed: {result.stderr}")
+            return failed(cmndOutcome)
+
+        b_io.ann.note(f"Updated: {filePath}")
+        return cmndOutcome.set(opError=b.OpError.Success,)
+
+
+####+BEGIN: b:py3:cs:method/args :methodName "cmndArgsSpec" :methodType "anyOrNone" :retType "bool" :deco "default" :argsList "self"
+    """ #+begin_org
+**  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  Mtd-T-anyOrNone [[elisp:(outline-show-subtree+toggle)][||]] /cmndArgsSpec/ deco=default  deco=default  [[elisp:(org-cycle)][| ]]
+    #+end_org """
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmndArgsSpec(self, ):
+####+END:
+        cmndArgsSpecDict = cs.arg.CmndArgsSpecDict()
+        cmndArgsSpecDict.argsDictAdd(
+            argPosition="0",
+            argName="filePath",
+            argChoices=[],
+            argDescription="Path to the file to update (e.g. /etc/hosts)",
+        )
+        return cmndArgsSpecDict
 
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaTcpPortsList" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
