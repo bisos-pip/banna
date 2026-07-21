@@ -87,6 +87,17 @@ Added =updateEtcHosts= class to =banna_csu.py= (repo + site-packages). Takes one
 path arg, invokes =py-dblock.cs -i updateDblocks <filePath>= via subprocess. Also added
 an example entry in =examples_csu=. Verified: =bannaInfo.cs -i updateEtcHosts
 banna/py3/test/hosts= runs cleanly and expands the dblock in place.
+** DONE [#A]  In bannaForEtcHosts, add the port number as a comment for each entry :ai:
+CLOSED: [2026-07-20 Sun]
+SCHEDULED: <2026-07-20 Mon 22:37>
+Do this in both places in this repo as well as in the installed bisos.banna.
+Also I made minor updates to the examples in banna_csu.py which are not reflected in the installed bisos.banna. Capture that as well.
+----- AI Results: ------
+Changed `bannaForEtcHosts` line format to `f"{ip}  {name}.here  # port={info.portNu}"` in
+both repo (`py3/bisos/banna/banna_csu.py`) and site-packages mirror. Also synced the
+`examples_csu` `updateEtcHosts` example path from `/etc/hosts` to
+`/bisos/git/bxRepos/banna/py3/tests/etcHosts` (with updated comment) in site-packages.
+Verified: `bannaInfo.cs -i bannaForEtcHosts` now shows `# port=NNNNN` on each line.
 
 ** -
 

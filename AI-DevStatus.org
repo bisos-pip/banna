@@ -26,19 +26,58 @@ Note to a fresh Claude: this file is intentionally sparse at project start.
 Fill in the sections below when asked to update, following the structure provided.
 
 * Current State
-  [To be filled in by Claude after first substantive interaction]
+
+  Stage 2 of AI-WorkPlan.org is fully complete. All four TODOs are DONE:
+  1. =bannaForEtcHosts= implemented and verified.
+  2. =bx:dblock:global:run-result-stdout= added to =bisos.pyDblock= (tracked in that repo).
+  3. =updateEtcHosts= command added to =banna_csu.py=.
+  4. Port number added as comment to each =bannaForEtcHosts= output line; =examples_csu=
+     =updateEtcHosts= example path updated. Both changes mirrored to site-packages.
+
+  All =banna_csu.py= changes are now in sync between repo and site-packages.
+  Next downstream work: =bisos-pip/capDns= wiring =updateEtcHosts= into =capDns_update=.
 
 * Architecture
-  [Key components, file structure, entry points]
+
+  - =py3/bisos/banna/tcpPorts.py= — =TcpPortNuInfo= dataclass, =TcpPortsAssignedList=
+    singleton with the full service→port registry.
+  - =py3/bisos/banna/unixSockets.py= — same pattern for Unix socket numbers.
+  - =py3/bisos/banna/banna_csu.py= — CS-Lib with all commands; loaded by =bannaInfo.cs=.
+  - =py3/bin/bannaInfo.cs= — entry point script (PyCS seeded .cs file).
+  - =py3/test/verify.sh= — runs =bannaInfo.cs= and =bannaInfo.cs -i bannaForEtcHosts=.
+  - =py3/test/hosts= — example hosts file with a =bx:dblock:global:run-result-stdout= block.
+
+  *Non-editable install*: =bisos.banna= is installed non-editable. Every change to
+  =banna_csu.py= must be mirrored to
+  =/bisos/venv/py3/bisos3/lib/python3.11/site-packages/bisos/banna/banna_csu.py=.
 
 * What Works
-  [Verified functionality]
+
+  - =bannaInfo.cs= — lists all commands, runs examples.
+  - =bannaForEtcHosts= — prints sorted =127.0.22.1xx  <name>.here= lines to stdout,
+    one per entry in =tcpPortsAssignedList=, starting at =127.0.22.100=.
+  - =updateEtcHosts <filePath>= — invokes =py-dblock.cs -i updateDblocks <filePath>=,
+    expanding =bx:dblock:global:run-result-stdout= blocks in that file.
+  - =py3/test/verify.sh= runs both commands without error.
 
 * What Is Untested
-  [Known gaps]
+
+  - =updateEtcHosts= on the real =/etc/hosts= (requires root; tested only on the
+    test fixture =py3/test/hosts=).
+  - Full end-to-end with =capDns_update= calling =updateEtcHosts= (capDns stubs not
+    yet wired).
 
 * Key Design Decisions
-  [Non-obvious choices and their rationale]
+
+  - =bannaForEtcHosts= outputs to stdout only (via =print()=); no opResults. This
+    is intentional — the pyDblock =run-result-stdout= handler captures stdout to
+    fill the dblock body.
+  - Each output line format is =IP  name.here  # port=NNNNN= so the hosts file
+    is self-documenting about which service owns each loopback address.
+  - IP assignment starts at =127.0.22.100= and increments sequentially over the
+    alphabetically sorted service name list.
+  - =updateEtcHosts= delegates entirely to =py-dblock.cs= rather than importing
+    pyDblock directly, keeping banna free of a hard dependency on bisos.pyDblock.
 
 # Local Variables:
 # eval: (setq-local toc-org-max-depth 4)

@@ -142,8 +142,8 @@ def examples_csu(
     cs.examples.menuSection('/For etcHosts/')
 
     cmnd('bannaForEtcHosts', comment="# A list of 127.0.22.xx  for each of the port names")
-    cmnd('updateEtcHosts', args='/etc/hosts', comment="# Update bx:dblock:global:run-result-stdout blocks in /etc/hosts")
-
+    cmnd('updateEtcHosts', args='/bisos/git/bxRepos/banna/py3/tests/etcHosts', comment="# Update bx:dblock:global:run-result-stdout blocks in /etc/hosts (sudo)")
+    
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
 """ #+begin_org
@@ -273,7 +273,7 @@ class bannaForEtcHosts(cs.Cmnd):
         lines = []
         for idx, (name, info) in enumerate(sorted(tcpPorts.tcpPortsAssignedList.tcpPortsList.items())):
             ip = f"{baseIp[0]}.{baseIp[1]}.{baseIp[2]}.{baseIp[3] + idx}"
-            line = f"{ip}  {name}.here"
+            line = f"{ip}  {name}.here  # port={info.portNu}"
             print(line)
             lines.append(line)
 
