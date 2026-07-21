@@ -310,6 +310,7 @@ class updateEtcHosts(cs.Cmnd):
 
         import subprocess
         import pathlib
+        import shutil
 
         actionArgs = self.cmndArgsGet("0", cmndArgsSpecDict, argsList)
         filePath = pathlib.Path(actionArgs)
@@ -318,8 +319,13 @@ class updateEtcHosts(cs.Cmnd):
             b_io.ann.note(f"ERROR: not a file: {filePath}")
             return failed(cmndOutcome)
 
+        pyDblockCs = shutil.which('py-dblock.cs')
+        if not pyDblockCs:
+            b_io.ann.note("ERROR: py-dblock.cs not found in PATH")
+            return failed(cmndOutcome)
+
         result = subprocess.run(
-            ['py-dblock.cs', '-i', 'updateDblocks', str(filePath)],
+            [pyDblockCs, '-i', 'updateDblocks', str(filePath)],
             capture_output=True,
             text=True,
         )
