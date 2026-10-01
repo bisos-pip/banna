@@ -101,6 +101,23 @@ Verified: `bannaInfo.cs -i bannaForEtcHosts` now shows `# port=NNNNN` on each li
 
 ** -
 
+* Stage 3: Implement bannaForEtcPasswd and  bannaForEtcGroup
+
+Goal: Create a registry for accounts and groups
+
+For BISOS, this is superior to auto assignment in that logs and monitoring becomes consistent.
+
+For example staring at 500
+airflow 501
+qmail 502
+
+
+* Stage 3 TODOs
+** +
+** TODO [#C] bannaForEtcPasswd and  bannaForEtcGroup Starting point similar to ports and local ip-addrs
+SCHEDULED: <2026-09-30 Wed>
+----- AI Results: ------
+
 
 # Local Variables:
 # eval: (setq-local toc-org-max-depth 4)
