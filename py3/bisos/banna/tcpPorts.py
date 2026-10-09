@@ -166,6 +166,33 @@ airflow = TcpPortNuInfo(
 )
 tcpPortsAssignedList.tcpPortsList[airflow.portName or 'airflow'] = airflow
 
+kafka = TcpPortNuInfo(
+    portNu=24007,
+    portName='kafka',
+    portDescription="kafka broker, PLAINTEXT client listener (ver 4.3.1)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-09 Fri 21:30>",
+)
+tcpPortsAssignedList.tcpPortsList[kafka.portName or 'kafka'] = kafka
+
+kafkaController = TcpPortNuInfo(
+    portNu=24008,
+    portName='kafkaController',
+    portDescription="kafka KRaft controller listener (ver 4.3.1)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-09 Fri 21:30>",
+)
+tcpPortsAssignedList.tcpPortsList[kafkaController.portName or 'kafkaController'] = kafkaController
+
+kafbatUi = TcpPortNuInfo(
+    portNu=24009,
+    portName='kafbatUi',
+    portDescription="kafbat UI, web UI for kafka (ver 1.5.0)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-09 Fri 21:30>",
+)
+tcpPortsAssignedList.tcpPortsList[kafbatUi.portName or 'kafbatUi'] = kafbatUi
+
 
 
 csPlayerPerf_dev = TcpPortNuInfo(
