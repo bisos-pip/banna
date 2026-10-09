@@ -256,7 +256,8 @@ class bannaForEtcHosts(cs.Cmnd):
             return failed(cmndOutcome)
 ####+END:
         if self.cmndDocStr(""" #+begin_org
-** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Map svcName to portNu. Outcome is a list of port numbers.
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  The banna dblock of /etc/hosts: one =<hereIp>  <hereName>.here  # port=<portNu>=
+        line per port that has a hereIp. Ports without one get no .here name.
         #+end_org """): return(cmndOutcome)
 
         self.captureRunStr(""" #+begin_org
@@ -268,12 +269,12 @@ class bannaForEtcHosts(cs.Cmnd):
         #+end_org """)
         if self.justCaptureP(): return cmndOutcome
 
+        # Each IP is stored with its port in tcpPorts (hereIp), not derived from its position
+        # in the sorted list: a new port must never move an existing .here name.
         from bisos.banna import tcpPorts
-        baseIp = (127, 0, 22, 100)
         lines = []
-        for idx, (name, info) in enumerate(sorted(tcpPorts.tcpPortsAssignedList.tcpPortsList.items())):
-            ip = f"{baseIp[0]}.{baseIp[1]}.{baseIp[2]}.{baseIp[3] + idx}"
-            line = f"{ip}  {name}.here  # port={info.portNu}"
+        for hereIp, hereName, portNu in tcpPorts.hereEntries():
+            line = f"{hereIp}  {hereName}.here  # port={portNu}"
             print(line)
             lines.append(line)
 

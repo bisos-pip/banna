@@ -72,12 +72,19 @@ class TcpPortNuInfo(object):
 ####+END:
     """
 ** Abstraction of
+** hereIp is the 127.0.22.x address of <hereName>.here in /etc/hosts (see bannaForEtcHosts).
+   Like portNu, it is assigned once and never recomputed: a new entry never moves an
+   existing one. None means the port has no .here name.
+** hereName defaults to portName. It differs when the name humans browse belongs to
+   another port of the same service (kafka.here is served by the kafbatUi port).
 """
     portNu: int | None = None
     portName: str | None = None
     portDescription: str | None = None
     assignedBy: str | None = None
     assignmentDate:  str | None = None
+    hereIp: str | None = None
+    hereName: str | None = None
 
 
 ####+BEGIN: b:py3:class/decl :className "TcpPortsAssignedList" :superClass "object" :classType "basic" :deco "@dataclass" :comment "Abstraction of a  Interface"
@@ -109,6 +116,7 @@ csPlayerPerf = TcpPortNuInfo(
     portDescription="Backend API performer service",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.103",
 )
 tcpPortsAssignedList.tcpPortsList[csPlayerPerf.portName or 'csPlayerPerf'] = csPlayerPerf
 
@@ -118,6 +126,7 @@ csPlayerUi = TcpPortNuInfo(
     portDescription="Reveal Gatsby site wrapping csLineInvoker and others",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.105",
 )
 tcpPortsAssignedList.tcpPortsList[csPlayerUi.portName or 'csPlayerUi'] = csPlayerUi
 
@@ -127,6 +136,7 @@ csLineInvoker = TcpPortNuInfo(
     portDescription="Line invoker service",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.101",
 )
 tcpPortsAssignedList.tcpPortsList[csLineInvoker.portName or 'csLineInvoker'] = csLineInvoker
 
@@ -136,6 +146,7 @@ sonCliPlayerUi = TcpPortNuInfo(
     portDescription="SON CLI player UI service",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.109",
 )
 tcpPortsAssignedList.tcpPortsList[sonCliPlayerUi.portName or 'sonCliPlayerUi'] = sonCliPlayerUi
 
@@ -145,6 +156,7 @@ sonCliLineInvoker = TcpPortNuInfo(
     portDescription="SON CLI line invoker service",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.107",
 )
 tcpPortsAssignedList.tcpPortsList[sonCliLineInvoker.portName or 'sonCliLineInvoker'] = sonCliLineInvoker
 
@@ -154,6 +166,7 @@ starterSidebar = TcpPortNuInfo(
     portDescription="Starter sidebar service",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.111",
 )
 tcpPortsAssignedList.tcpPortsList[starterSidebar.portName or 'starterSidebar'] = starterSidebar
 
@@ -163,6 +176,7 @@ airflow = TcpPortNuInfo(
     portDescription="airflow (ver 3.2.2)",
     assignedBy="Mohsen",
     assignmentDate="<2026-06-27 Fri 16:44>",
+    hereIp="127.0.22.100",
 )
 tcpPortsAssignedList.tcpPortsList[airflow.portName or 'airflow'] = airflow
 
@@ -190,6 +204,8 @@ kafbatUi = TcpPortNuInfo(
     portDescription="kafbat UI, web UI for kafka (ver 1.5.0)",
     assignedBy="Mohsen",
     assignmentDate="<2026-10-09 Fri 21:30>",
+    hereName="kafka",
+    hereIp="127.0.22.113",
 )
 tcpPortsAssignedList.tcpPortsList[kafbatUi.portName or 'kafbatUi'] = kafbatUi
 
@@ -201,6 +217,7 @@ csPlayerPerf_dev = TcpPortNuInfo(
     portDescription="Backend API performer service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.104",
 )
 tcpPortsAssignedList.tcpPortsList[csPlayerPerf_dev.portName or 'csPlayerPerf_dev'] = csPlayerPerf_dev
 
@@ -210,6 +227,7 @@ csPlayerUi_dev = TcpPortNuInfo(
     portDescription="Reveal Gatsby site wrapping csLineInvoker and others (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.106",
 )
 tcpPortsAssignedList.tcpPortsList[csPlayerUi_dev.portName or 'csPlayerUi_dev'] = csPlayerUi_dev
 
@@ -219,6 +237,7 @@ csLineInvoker_dev = TcpPortNuInfo(
     portDescription="Line invoker service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.102",
 )
 tcpPortsAssignedList.tcpPortsList[csLineInvoker_dev.portName or 'csLineInvoker_dev'] = csLineInvoker_dev
 
@@ -228,6 +247,7 @@ sonCliPlayerUi_dev = TcpPortNuInfo(
     portDescription="SON CLI player UI service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.110",
 )
 tcpPortsAssignedList.tcpPortsList[sonCliPlayerUi_dev.portName or 'sonCliPlayerUi_dev'] = sonCliPlayerUi_dev
 
@@ -237,6 +257,7 @@ sonCliLineInvoker_dev = TcpPortNuInfo(
     portDescription="SON CLI line invoker service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.108",
 )
 tcpPortsAssignedList.tcpPortsList[sonCliLineInvoker_dev.portName or 'sonCliLineInvoker_dev'] = sonCliLineInvoker_dev
 
@@ -246,8 +267,48 @@ starterSidebar_dev = TcpPortNuInfo(
     portDescription="Starter sidebar service (development)",
     assignedBy="Mohsen",
     assignmentDate="<2026-02-06 Fri 16:44>",
+    hereIp="127.0.22.112",
 )
 tcpPortsAssignedList.tcpPortsList[starterSidebar_dev.portName or 'starterSidebar_dev'] = starterSidebar_dev
+
+
+def hereEntries() -> list[tuple[str, str, int | None]]:
+    """(hereIp, hereName, portNu) of every port that has a .here name, sorted by hereName.
+
+    The source of the banna dblock of /etc/hosts (bannaInfo.cs -i bannaForEtcHosts).
+    """
+    entries = [
+        (info.hereIp, info.hereName or portName, info.portNu)
+        for portName, info in tcpPortsAssignedList.tcpPortsList.items()
+        if info.hereIp is not None
+    ]
+    return sorted(entries, key=lambda entry: entry[1])
+
+
+def hereIpOf(hereName: str) -> str | None:
+    """The 127.0.22.x address of <hereName>.here --- without /etc/hosts having to be current."""
+    for hereIp, name, _ in hereEntries():
+        if name == hereName:
+            return hereIp
+    return None
+
+
+def _hereEntriesValidate() -> None:
+    """Two .here names on one IP would silently route to the wrong vhost: refuse at import."""
+    seenIps: dict[str, str] = {}
+    seenNames: set[str] = set()
+    for hereIp, hereName, _ in hereEntries():
+        if not hereIp.startswith("127.0.22.") or not 0 <= int(hereIp.rsplit(".", 1)[1]) <= 255:
+            raise ValueError(f"banna: {hereName}.here hereIp={hereIp} is outside 127.0.22.0/24")
+        if hereIp in seenIps:
+            raise ValueError(f"banna: {hereName}.here and {seenIps[hereIp]}.here both have hereIp={hereIp}")
+        if hereName in seenNames:
+            raise ValueError(f"banna: hereName {hereName} is assigned to more than one port")
+        seenIps[hereIp] = hereName
+        seenNames.add(hereName)
+
+
+_hereEntriesValidate()
 
 
 
