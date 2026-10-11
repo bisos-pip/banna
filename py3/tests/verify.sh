@@ -16,3 +16,8 @@ lpDo bannaInfo.cs -i updateEtcHosts  ./etcHosts
 
 lpDo diff ./etcHosts.blank ./etcHosts
 
+
+# --- sysAccts registry: read-only ---
+lpDo ../bin/bannaInfo.cs -i bannaForEtcPasswd
+lpDo ../bin/bannaInfo.cs -i bannaForEtcGroup
+lpDo ../bin/bannaInfo.cs -i bannaSysAcctsVerify

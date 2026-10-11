@@ -117,6 +117,29 @@ qmail 502
 ** TODO [#C] bannaForEtcPasswd and  bannaForEtcGroup Starting point similar to ports and local ip-addrs
 SCHEDULED: <2026-09-30 Wed>
 ----- AI Results: ------
+- New py3/bisos/banna/sysAccts.py, shaped like tcpPorts.py: SysAcctInfo (acctName, uid,
+  gid [defaults to uid], groupName [defaults to acctName], acctDescription, homeDir, shell,
+  createHome, block) in a singleton list.
+  Registered: 500 left as the unassigned base; airflow 501, kafka 503 (502 free);
+  504-509 next singles; 510-519 the qmail block.
+- Range 500-999 growing upward, inside Debian's dynamic system range (Policy 9.2.2),
+  deliberately without touching /etc/login.defs or /etc/adduser.conf (Mohsen's decision):
+  adduser --system counts up from 100 and useradd -r down from 999.
+  Collisions are detected, never silently resolved.
+- Import-time check: duplicate uid/gid or a number outside 500-999 raises ValueError.
+- useraddScript(acctName): idempotent bash for sboms. Absent -> groupadd -r -g / useradd -r -u -g.
+  Present with other numbers -> WARNING, no change (renumbering needs a chown: a migration).
+  Registered number held by another account/group -> ERROR, exit 1.
+- bannaInfo.cs Cmnds: bannaForEtcPasswd, bannaForEtcGroup, bannaSysAcctsVerify (read-only
+  liveDrift: ok / absent / differs / conflict).
+- First consumer: bisos.kafka's kafka-sbom.pcs (kafkaAcctSetup).
+- On this host bannaSysAcctsVerify reports airflow "differs" (live 999/995, banna 501/501);
+  bisos.airflow's sbom still uses plain useradd -r. Migrating it is open.
+- qmail is a block (510-519) rather than the single 502 of the original note: classic
+  qmail's seven accounts, uids 510-516 (alias, qmaild, qmaill, qmailp in group nofiles=511;
+  qmailq, qmailr, qmails in group qmail=510), 517-519 spare. Accounts may share a group
+  (groupName); the import-time check requires one gid per group and one group per gid.
+  useraddScriptBlock('qmail') creates the whole block. bisos.qmail does not use it yet.
 
 
 # Local Variables:

@@ -143,6 +143,12 @@ def examples_csu(
 
     cmnd('bannaForEtcHosts', comment="# A list of 127.0.22.xx  for each of the port names")
     cmnd('updateEtcHosts', args='/bisos/git/bxRepos/banna/py3/tests/etcHosts', comment="# Update bx:dblock:global:run-result-stdout blocks in /etc/hosts (sudo)")
+
+    cs.examples.menuSection('/System Accounts Registrar -- uid/gid, for etcPasswd and etcGroup/')
+
+    cmnd('bannaForEtcPasswd', comment="# /etc/passwd lines of every registered system account")
+    cmnd('bannaForEtcGroup', comment="# /etc/group lines of their primary groups")
+    cmnd('bannaSysAcctsVerify', comment="# Read-only: this host's accounts against the registry")
     
 
 ####+BEGIN: blee:bxPanel:foldingSection :outLevel 0 :sep nil :title "CmndSvc" :anchor ""  :extraInfo "Command Services Section"
@@ -279,6 +285,107 @@ class bannaForEtcHosts(cs.Cmnd):
             lines.append(line)
 
         return cmndOutcome.set(opError=b.OpError.Success,)
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaForEtcPasswd" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaForEtcPasswd>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaForEtcPasswd(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  The /etc/passwd lines of every account in bisos.banna.sysAccts, by uid.
+        Informational: accounts are created by each capability's sbom via sysAccts.useraddScript().
+        #+end_org """): return(cmndOutcome)
+
+        from bisos.banna import sysAccts
+        lines = sysAccts.etcPasswdLines()
+        for line in lines:
+            print(line)
+
+        return cmndOutcome.set(opError=b.OpError.Success, opResults=lines,)
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaForEtcGroup" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaForEtcGroup>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaForEtcGroup(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  The /etc/group lines of the primary group of every account in bisos.banna.sysAccts, by gid.
+        #+end_org """): return(cmndOutcome)
+
+        from bisos.banna import sysAccts
+        lines = sysAccts.etcGroupLines()
+        for line in lines:
+            print(line)
+
+        return cmndOutcome.set(opError=b.OpError.Success, opResults=lines,)
+
+
+####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "bannaSysAcctsVerify" :comment "" :extent "verify" :ro "noCli" :parsMand "" :parsOpt "" :argsMin 0 :argsMax 0 :pyInv ""
+""" #+begin_org
+*  _[[elisp:(blee:menu-sel:outline:popupMenu)][±]]_ _[[elisp:(blee:menu-sel:navigation:popupMenu)][Ξ]]_ [[elisp:(outline-show-branches+toggle)][|=]] [[elisp:(bx:orgm:indirectBufOther)][|>]] *[[elisp:(blee:ppmm:org-mode-toggle)][|N]]*  CmndSvc-   [[elisp:(outline-show-subtree+toggle)][||]] <<bannaSysAcctsVerify>>  =verify= ro=noCli   [[elisp:(org-cycle)][| ]]
+#+end_org """
+class bannaSysAcctsVerify(cs.Cmnd):
+    cmndParamsMandatory = [ ]
+    cmndParamsOptional = [ ]
+    cmndArgsLen = {'Min': 0, 'Max': 0,}
+    rtInvConstraints = cs.rtInvoker.RtInvoker.new_noRo() # NO RO From CLI
+
+    @cs.track(fnLoc=True, fnEntry=True, fnExit=True)
+    def cmnd(self,
+             rtInv: cs.RtInvoker,
+             cmndOutcome: b.op.Outcome,
+    ) -> b.op.Outcome:
+
+        failed = b_io.eh.badOutcome
+        callParamsDict = {}
+        if self.invocationValidate(rtInv, cmndOutcome, callParamsDict, None).isProblematic():
+            return failed(cmndOutcome)
+####+END:
+        if self.cmndDocStr(""" #+begin_org
+** [[elisp:(org-cycle)][| *CmndDesc:* | ]]  Compare this host's accounts with bisos.banna.sysAccts. Read-only.
+        ok / absent (capability not installed) / differs (needs migration) / conflict (number taken).
+        #+end_org """): return(cmndOutcome)
+
+        from bisos.banna import sysAccts
+        results = sysAccts.liveDrift()
+        for acctName, status, detail in results:
+            print(f"{acctName:<12} {status:<9} {detail}")
+
+        return cmndOutcome.set(opError=b.OpError.Success, opResults=results,)
 
 
 ####+BEGIN: b:py3:cs:cmnd/classHead :cmndName "updateEtcHosts" :comment "" :extent "verify" :ro "cli" :parsMand "" :parsOpt "" :argsMin 1 :argsMax 1 :pyInv ""
