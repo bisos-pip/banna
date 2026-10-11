@@ -27,6 +27,26 @@ Fill in the sections below when asked to update, following the structure provide
 
 * Current State
 
+  2026-10-09/10 (from a bisos-pip/kafka session; commits 7d73d85, 115db49, 1a36ee4):
+  - banna is now installed *editable* in bisos3 (Mohsen, 2026-10-09). The "mirrored to
+    site-packages" notes below are history: edits to the repo now take effect directly.
+  - tcpPorts.py: kafka=24007, kafkaController=24008, kafbatUi=24009 (24xxx service series).
+  - .here IPs are now *stored* per port (TcpPortNuInfo.hereIp, hereName) instead of derived
+    from sorted position --- adding the kafka ports would otherwise have shifted six existing
+    names by 3. Existing names kept their IPs; kafbatUi has hereName="kafka" ->
+    127.0.22.113 kafka.here (port 24009); broker and controller have no .here name.
+    hereEntries()/hereIpOf(); import-time check rejects duplicate IPs/names or IPs outside
+    127.0.22.0/24. bannaForEtcHosts prints stored IPs. Dry run showed exactly one added
+    /etc/hosts line; /etc/hosts was then updated on the dev host.
+  - Stage 3 (sysAccts.py): uid/gid registry, 500-999 upward without touching login.defs;
+    airflow 501, kafka 503, qmail block 510-519. See AI-WorkPlan.org Stage 3 results.
+    On the dev host airflow is still 999/995 (bannaSysAcctsVerify: differs) --- migration
+    and bisos.airflow's sbom switch to useraddScript() are open.
+  - .here stays in /etc/hosts (decision 2026-10-10, pals/palsWithBcm 1.2): loopback names
+    are per-platform. bisos.dnsCap's Knot also generates a here. zone from hereEntries(),
+    for testing only.
+
+
   Stage 2 of AI-WorkPlan.org is fully complete. All four TODOs are DONE:
   1. =bannaForEtcHosts= implemented and verified.
   2. =bx:dblock:global:run-result-stdout= added to =bisos.pyDblock= (tracked in that repo).
