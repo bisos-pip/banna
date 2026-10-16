@@ -73,7 +73,7 @@ without needing =/etc/hosts= to be current.
 moved between them (backups, rsync, cloned VMs, NFS) or logs disagree. =sysAccts.py= assigns
 them from 500 upward (inside Debian's dynamic system range, without changing
 =/etc/login.defs=: =adduser --system= counts up from 100 and =useradd -r= down from 999):
-airflow 501, kafka 503, the qmail block 510--519. =useraddScript(acctName)= is the bash an sbom
+airflow 501, kafka 503, prometheus 504, grafana 505, the qmail block 510--519. =useraddScript(acctName)= is the bash an sbom
 runs: it creates the account with its numbers, warns if an existing account differs, and
 refuses if a number is already taken.
 

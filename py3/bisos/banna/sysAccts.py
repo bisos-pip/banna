@@ -142,7 +142,27 @@ kafka = SysAcctInfo(
 )
 sysAcctsAssignedList.sysAcctsList[kafka.acctName or 'kafka'] = kafka
 
-# 504-509: single-account capabilities, next in line.
+prometheus = SysAcctInfo(
+    acctName='prometheus',
+    uid=504,
+    acctDescription="Prometheus and its node_exporter (bisos.prometheus)",
+    homeDir="/var/lib/prometheus",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-15 Thu 23:00>",
+)
+sysAcctsAssignedList.sysAcctsList[prometheus.acctName or 'prometheus'] = prometheus
+
+grafana = SysAcctInfo(
+    acctName='grafana',
+    uid=505,
+    acctDescription="Grafana (bisos.grafana)",
+    homeDir="/var/lib/grafana",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-15 Thu 23:00>",
+)
+sysAcctsAssignedList.sysAcctsList[grafana.acctName or 'grafana'] = grafana
+
+# 506-509: single-account capabilities, next in line.
 
 # 510-519: the qmail block (bisos.qmail). Classic qmail's seven accounts and two groups:
 #   group nofiles (511): alias, qmaild, qmaill, qmailp

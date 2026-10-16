@@ -40,6 +40,10 @@ Fill in the sections below when asked to update, following the structure provide
     /etc/hosts line; /etc/hosts was then updated on the dev host.
   - Stage 3 (sysAccts.py): uid/gid registry, 500-999 upward without touching login.defs;
     airflow 501, kafka 503, qmail block 510-519. See AI-WorkPlan.org Stage 3 results.
+  - 2026-10-15 (from a bisos-pip/kafka session, for the new bisos.prometheus and bisos.grafana):
+    prometheus=24010 (127.0.22.114 prometheus.here), grafana=24011 (127.0.22.115 grafana.here),
+    prometheusNodeExporter=24012 (no .here name); sysAccts prometheus 504, grafana 505
+    (node_exporter runs as prometheus, as Debian's package does).
     On the dev host airflow is still 999/995 (bannaSysAcctsVerify: differs) --- migration
     and bisos.airflow's sbom switch to useraddScript() are open.
   - .here stays in /etc/hosts (decision 2026-10-10, pals/palsWithBcm 1.2): loopback names

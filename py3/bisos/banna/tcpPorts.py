@@ -209,6 +209,35 @@ kafbatUi = TcpPortNuInfo(
 )
 tcpPortsAssignedList.tcpPortsList[kafbatUi.portName or 'kafbatUi'] = kafbatUi
 
+prometheus = TcpPortNuInfo(
+    portNu=24010,
+    portName='prometheus',
+    portDescription="prometheus server, web UI and HTTP API (ver 3.15.0)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-15 Thu 23:00>",
+    hereIp="127.0.22.114",
+)
+tcpPortsAssignedList.tcpPortsList[prometheus.portName or 'prometheus'] = prometheus
+
+grafana = TcpPortNuInfo(
+    portNu=24011,
+    portName='grafana',
+    portDescription="grafana server, web UI and HTTP API (ver 13.2.4)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-15 Thu 23:00>",
+    hereIp="127.0.22.115",
+)
+tcpPortsAssignedList.tcpPortsList[grafana.portName or 'grafana'] = grafana
+
+prometheusNodeExporter = TcpPortNuInfo(
+    portNu=24012,
+    portName='prometheusNodeExporter',
+    portDescription="prometheus node_exporter, host metrics scraped by prometheus (ver 1.12.1)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-15 Thu 23:00>",
+)
+tcpPortsAssignedList.tcpPortsList[prometheusNodeExporter.portName or 'prometheusNodeExporter'] = prometheusNodeExporter
+
 
 
 csPlayerPerf_dev = TcpPortNuInfo(
