@@ -162,7 +162,47 @@ grafana = SysAcctInfo(
 )
 sysAcctsAssignedList.sysAcctsList[grafana.acctName or 'grafana'] = grafana
 
-# 506-509: single-account capabilities, next in line.
+pypiserver = SysAcctInfo(
+    acctName='pypiserver',
+    uid=506,
+    acctDescription="pypiserver and pypi-browser (bisos.pypiserver)",
+    homeDir="/var/lib/pypiserver",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 19:00>",
+)
+sysAcctsAssignedList.sysAcctsList[pypiserver.acctName or 'pypiserver'] = pypiserver
+
+devpi = SysAcctInfo(
+    acctName='devpi',
+    uid=507,
+    acctDescription="devpi-server (bisos.devpi)",
+    homeDir="/var/lib/devpi",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 21:00>",
+)
+sysAcctsAssignedList.sysAcctsList[devpi.acctName or 'devpi'] = devpi
+
+geneweb = SysAcctInfo(
+    acctName='geneweb',
+    uid=508,
+    acctDescription="GeneWeb gwd (bisos.geneweb)",
+    homeDir="/var/lib/geneweb",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 22:00>",
+)
+sysAcctsAssignedList.sysAcctsList[geneweb.acctName or 'geneweb'] = geneweb
+
+csplayer = SysAcctInfo(
+    acctName='csplayer',
+    uid=509,
+    acctDescription="csPlayer performer, its Django REST API and operations (csPlayerPerf-drf)",
+    homeDir="/bisos/var/csPlayerPerf",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-18 Sun 10:00>",
+)
+sysAcctsAssignedList.sysAcctsList[csplayer.acctName or 'csplayer'] = csplayer
+
+# 530: single-account capabilities, next in line (510-529 are the qmail and gitlab blocks).
 
 # 510-519: the qmail block (bisos.qmail). Classic qmail's seven accounts and two groups:
 #   group nofiles (511): alias, qmaild, qmaill, qmailp
@@ -189,6 +229,29 @@ for _uid, _acctName, _groupName, _homeDir, _desc in (
         block='qmail',
         assignedBy="Mohsen",
         assignmentDate="<2026-10-10 Sat 11:00>",
+    )
+
+
+# 520-529: the gitlab block (bisos.gitlab). The GitLab Linux package creates these accounts itself
+# unless their numbers are set in gitlab.rb (user['uid'], web_server['uid'], ...); bisos.gitlab sets
+# them from here. Each account has a group of its own name and number. 525-529 are spare.
+for _uid, _acctName, _homeDir, _desc in (
+        (520, 'git',               '/var/opt/gitlab',            "GitLab: the main account (git over ssh, rails)"),
+        (521, 'gitlab-www',        '/var/opt/gitlab/nginx',      "GitLab: web server account"),
+        (522, 'gitlab-redis',      '/var/opt/gitlab/redis',      "GitLab: bundled Redis"),
+        (523, 'gitlab-psql',       '/var/opt/gitlab/postgresql', "GitLab: bundled PostgreSQL"),
+        (524, 'gitlab-prometheus', '/var/opt/gitlab/prometheus', "GitLab: bundled monitoring"),
+):
+    sysAcctsAssignedList.sysAcctsList[_acctName] = SysAcctInfo(
+        acctName=_acctName,
+        uid=_uid,
+        acctDescription=f"{_desc} (bisos.gitlab)",
+        homeDir=_homeDir,
+        # git over ssh runs gitlab-shell through the account's login shell (GitLab sets /bin/sh).
+        shell="/bin/sh" if _acctName == 'git' else "/usr/sbin/nologin",
+        block='gitlab',
+        assignedBy="Mohsen",
+        assignmentDate="<2026-10-16 Fri 21:00>",
     )
 
 
@@ -237,6 +300,8 @@ def useraddScript(acctName: str) -> str:
     a = sysAcctOf(acctName)
     q = shlex.quote
     homeOpt = "-m" if a.createHome else "-M"
+    # The description is the passwd GECOS field: useradd -c refuses a colon or a newline.
+    gecos = (a.acctDescription or '').replace(":", " -").replace("\n", " ")
     return f"""
 # banna sysAccts: {a.acctName} uid={a.uid}, group {a.groupName} gid={a.gid}
 if getent group {q(a.groupName)} >/dev/null ; then
@@ -262,7 +327,7 @@ else
         exit 1
     fi
     sudo useradd -r -u {a.uid} -g {q(a.groupName)} {homeOpt} -d {q(a.homeDir or '/nonexistent')} \\
-        -s {q(a.shell)} -c {q(a.acctDescription or '')} {q(a.acctName)}
+        -s {q(a.shell)} -c {q(gecos)} {q(a.acctName)}
 fi
 """
 

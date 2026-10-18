@@ -238,6 +238,75 @@ prometheusNodeExporter = TcpPortNuInfo(
 )
 tcpPortsAssignedList.tcpPortsList[prometheusNodeExporter.portName or 'prometheusNodeExporter'] = prometheusNodeExporter
 
+pypiserver = TcpPortNuInfo(
+    portNu=24013,
+    portName='pypiserver',
+    portDescription="pypiserver, a private Python package index (ver 2.4.2); pypiserver.here also serves pypi-browser",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 19:00>",
+    hereIp="127.0.22.116",
+)
+tcpPortsAssignedList.tcpPortsList[pypiserver.portName or 'pypiserver'] = pypiserver
+
+pypiBrowser = TcpPortNuInfo(
+    portNu=24014,
+    portName='pypiBrowser',
+    portDescription="pypi-browser, web UI over pypiserver (pypi-browser-webapp ver 0.0.12), at pypiserver.here/",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 19:00>",
+)
+tcpPortsAssignedList.tcpPortsList[pypiBrowser.portName or 'pypiBrowser'] = pypiBrowser
+
+devpi = TcpPortNuInfo(
+    portNu=24015,
+    portName='devpi',
+    portDescription="devpi-server with devpi-web, a Python package index (ver 6.20.3)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 21:00>",
+    hereIp="127.0.22.117",
+)
+tcpPortsAssignedList.tcpPortsList[devpi.portName or 'devpi'] = devpi
+
+gitlab = TcpPortNuInfo(
+    portNu=24016,
+    portName='gitlab',
+    portDescription="gitlab-workhorse, GitLab's HTTP front end, behind BISOS nginx (GitLab CE)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 21:00>",
+    hereIp="127.0.22.118",
+)
+tcpPortsAssignedList.tcpPortsList[gitlab.portName or 'gitlab'] = gitlab
+
+geneweb = TcpPortNuInfo(
+    portNu=24017,
+    portName='geneweb',
+    portDescription="geneweb gwd, genealogy web server (ver 7.1.0-beta2)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 22:00>",
+    hereIp="127.0.22.119",
+)
+tcpPortsAssignedList.tcpPortsList[geneweb.portName or 'geneweb'] = geneweb
+
+platform = TcpPortNuInfo(
+    portNu=24018,
+    portName='platform',
+    portDescription="platform.here, the static Gatsby site of this platform's capabilities (nginx serves it)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 22:40>",
+    hereIp="127.0.22.120",
+)
+tcpPortsAssignedList.tcpPortsList[platform.portName or 'platform'] = platform
+
+astroStarter = TcpPortNuInfo(
+    portNu=24019,
+    portName='astroStarter',
+    portDescription="astroStarter.here, the ByStar Astro starter as a site (nginx serves it)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-18 Sun 00:30>",
+    hereIp="127.0.22.122",
+)
+tcpPortsAssignedList.tcpPortsList[astroStarter.portName or 'astroStarter'] = astroStarter
+
 
 
 csPlayerPerf_dev = TcpPortNuInfo(
@@ -299,6 +368,26 @@ starterSidebar_dev = TcpPortNuInfo(
     hereIp="127.0.22.112",
 )
 tcpPortsAssignedList.tcpPortsList[starterSidebar_dev.portName or 'starterSidebar_dev'] = starterSidebar_dev
+
+platform_dev = TcpPortNuInfo(
+    portNu=25018,
+    portName='platform_dev',
+    portDescription="platform.here Gatsby site (development)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-16 Fri 22:40>",
+    hereIp="127.0.22.121",
+)
+tcpPortsAssignedList.tcpPortsList[platform_dev.portName or 'platform_dev'] = platform_dev
+
+astroStarter_dev = TcpPortNuInfo(
+    portNu=25019,
+    portName='astroStarter_dev',
+    portDescription="astroStarter.here Astro site (development)",
+    assignedBy="Mohsen",
+    assignmentDate="<2026-10-18 Sun 00:30>",
+    hereIp="127.0.22.123",
+)
+tcpPortsAssignedList.tcpPortsList[astroStarter_dev.portName or 'astroStarter_dev'] = astroStarter_dev
 
 
 def hereEntries() -> list[tuple[str, str, int | None]]:

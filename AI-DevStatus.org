@@ -44,8 +44,21 @@ Fill in the sections below when asked to update, following the structure provide
     prometheus=24010 (127.0.22.114 prometheus.here), grafana=24011 (127.0.22.115 grafana.here),
     prometheusNodeExporter=24012 (no .here name); sysAccts prometheus 504, grafana 505
     (node_exporter runs as prometheus, as Debian's package does).
+  - 2026-10-16 (for bisos.pypiserver): pypiserver=24013 (127.0.22.116 pypiserver.here; the vhost also
+    serves pypi-browser), pypiBrowser=24014 (no .here name); sysAccts pypiserver 506.
+  - 2026-10-16 (for bisos.devpi and bisos.gitlab): devpi=24015 (127.0.22.117 devpi.here), gitlab=24016
+    (workhorse; 127.0.22.118 gitlab.here); sysAccts devpi 507, and the gitlab block 520-529 (git 520
+    with shell /bin/sh, gitlab-www 521, gitlab-redis 522, gitlab-psql 523, gitlab-prometheus 524).
+  - 2026-10-16 (for bisos.geneweb): geneweb=24017 (127.0.22.119 geneweb.here); sysAccts geneweb 508.
     On the dev host airflow is still 999/995 (bannaSysAcctsVerify: differs) --- migration
     and bisos.airflow's sbom switch to useraddScript() are open.
+  - 2026-10-16 (for platform.here, bro_rawBisos web/gatsby): platform=24018 (127.0.22.120 platform.here;
+    a static site, so the port is a registry slot), platform_dev=25018 (127.0.22.121, gatsby develop).
+  - 2026-10-18 (for astro-starter-bystar): astroStarter=24019 (127.0.22.122 astroStarter.here; a static
+    site), astroStarter_dev=25019 (127.0.22.123, astro dev / preview).
+  - 2026-10-18 (for bisos-web/csPlayerPerf-drf): sysAccts csplayer 509, home /bisos/var/csPlayerPerf; the
+    port csPlayerPerf=23001 was already there. useraddScript() now turns a ':' in a description into
+    ' -' (useradd -c refused csplayer's; GECOS is colon-separated). Next single account: 530.
   - .here stays in /etc/hosts (decision 2026-10-10, pals/palsWithBcm 1.2): loopback names
     are per-platform. bisos.dnsCap's Knot also generates a here. zone from hereEntries(),
     for testing only.
